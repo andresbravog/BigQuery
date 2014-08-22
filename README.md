@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andresbravog/BigQuery.svg)](https://travis-ci.org/andresbravog/BigQuery)
+[![Build Status](https://travis-ci.org/andresbravog/BigQuery.svg)](https://travis-ci.org/andresbravog/BigQuery) [![Code Climate](https://codeclimate.com/github/andresbravog/BigQuery/badges/gpa.svg)](https://codeclimate.com/github/andresbravog/BigQuery)
 
 # BigQuery
 
