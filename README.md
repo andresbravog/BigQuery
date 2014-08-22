@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andresbravog/BigQuery.svg)](https://travis-ci.org/andresbravog/BigQuery)
+
 # BigQuery
 
 BigQuery is a wrapper around the Google api ruby gem designed to make interacting with BigQuery easier.
