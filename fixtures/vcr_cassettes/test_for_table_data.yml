@@ -1,0 +1,175 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.googleapis.com/bigquery/v2/projects/redbooth-bravo-test/datasets/console_test/tables
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        BigQuery ruby app/0.2.9 google-api-ruby-client/0.7.1 Mac OS X/10.9.4
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.aQCGu4PCbCB_khwAAABdcK9iiAGzwq7Z-ekr4GzPXvv1FAcNjLP6sYroWC10jQ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Fri, 22 Aug 2014 10:34:18 GMT
+      Date:
+      - Fri, 22 Aug 2014 10:34:18 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Etag:
+      - '"qer-y8WLkZI323PjwBL5LfNzqMk/hEdodzgAWROqUUh2ZKZHWMtTCJ4"'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAMVTz2+CMBS+81c03XVuGbhk8aaLydhwW4yGhLmQAk+oIIXy
+        5oLG/11aWeZFTws79NB+3/t+NHk7g9CU5xEdEBrwuPwCWV8hCzJweIX0uoEB
+        WazgBS1B9uoH10k92zKt99X3yLl3lq/bcpLeJuNIRNt46E7fyvk8Mb0X78md
+        4Ozxub+gWkerVo3Sh0HIrjnnnBW7AbmGJESBEJj0Ask2oodQ4SAUeSUy8NXl
+        hhXcX4uco5A8j/0INpCJYg05tjpacwpLkJCH0Ghqb0ILKVYQon3O5jhOaMSQ
+        VdDyTq1/CNrgCF8Io7j7NlFdqBx0Nhw5YwXo97/7kt9wnZbXzx3XvDOtf2qq
+        nDsu65/Odd23Nb9Y2SCfetMFssxGWKtt7xt74wCKGgaOZgQAAA==
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 10:34:19 GMT
+- request:
+    method: delete
+    uri: https://www.googleapis.com/bigquery/v2/projects/redbooth-bravo-test/datasets/console_test/tables/test123
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        BigQuery ruby app/0.2.9 google-api-ruby-client/0.7.1 Mac OS X/10.9.4
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.aQCGu4PCbCB_khwAAABdcK9iiAGzwq7Z-ekr4GzPXvv1FAcNjLP6sYroWC10jQ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Fri, 22 Aug 2014 10:34:20 GMT
+      Etag:
+      - '"qer-y8WLkZI323PjwBL5LfNzqMk/vyGp6PvFo4RvsFtPoIWeCReyIC8"'
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 10:34:20 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/bigquery/v2/projects/redbooth-bravo-test/datasets/console_test/tables
+    body:
+      encoding: UTF-8
+      string: '{"tableReference":{"tableId":"test123","projectId":"redbooth-bravo-test","datasetId":"console_test"},"schema":{"fields":[{"name":"id","type":"INTEGER"}]}}'
+    headers:
+      User-Agent:
+      - |-
+        BigQuery ruby app/0.2.9 google-api-ruby-client/0.7.1 Mac OS X/10.9.4
+         (gzip)
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      Authorization:
+      - Bearer ya29.aQCGu4PCbCB_khwAAABdcK9iiAGzwq7Z-ekr4GzPXvv1FAcNjLP6sYroWC10jQ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Fri, 22 Aug 2014 10:34:21 GMT
+      Etag:
+      - '"qer-y8WLkZI323PjwBL5LfNzqMk/eoop_JRIxR3o_h8UzkFJO1cmaY4"'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAHWQX2+CMBTF3/kUpHtVK+CU+LjELRh0C3FZtrmYAheo/CnS
+        TqbG7762aOLD9tLknnPv/d3Tk2GinFYxmpoopOnuG5rDnSBhAagnLRAkVdYa
+        7aDpH9w3P//wHNt52bYP/r2fLI+7RY6BsXozD7yfwGGbzH095o/zZysqyfto
+        jfQeqgENxCFjIuuHDdmzvgAuphGrOCtgo4qBeizb0SMcisSnVa4GMyFqPsW4
+        bdtBylhaAKkpH0SsxNej8d7GdcO2EAmO/wDhmAjCQZq3RKyjcnwL1lIACTRQ
+        RSDxJ8M00WW3918QNWqiC6TrugV1tl7dmVeiYZ512iiDklxhCYUi5rL6lJWW
+        pFiRUl2j/rLXKeJQa8VbrmZPswAp9Syfr8vSqAEiKKtWtJu0RkN3MnTGY2ti
+        uzprQbhYsJhKYPx3l3E2fgHz3szSJAIAAA==
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 10:34:22 GMT
+recorded_with: VCR 2.9.2

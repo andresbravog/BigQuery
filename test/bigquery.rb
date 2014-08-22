@@ -3,10 +3,18 @@ require 'minitest/autorun'
 require 'yaml'
 require 'big_query'
 require 'pry-byebug'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
+end
 
 class BigQueryTest < MiniTest::Unit::TestCase
-  def setup
-    @bq = BigQuery::Client.new(config)
+  def client
+    VCR.use_cassette('big_query_client') do
+      BigQuery::Client.new(config)
+    end
   end
 
   def config
@@ -16,57 +24,71 @@ class BigQueryTest < MiniTest::Unit::TestCase
   end
 
   def test_for_tables
-    tables = @bq.tables
+    VCR.use_cassette('bq_test_for_tables') do
+      tables = client.tables
 
-    assert_equal tables[0]['kind'], "bigquery#table"
-    assert_equal tables[0]['id'], "#{config['project_id']}:#{config['dataset']}.test"
-    assert_equal tables[0]['tableReference']['tableId'], 'test'
+      assert_equal tables[0]['kind'], "bigquery#table"
+      assert_includes tables.map { |t| t['id'] }, "#{config['project_id']}:#{config['dataset']}.test"
+      assert_includes tables.map { |t| t['tableReference']['tableId'] }, 'test'
+    end
   end
 
   def test_for_tables_formatted
-    result = @bq.tables_formatted
+    VCR.use_cassette('bq_test_for_tables_formatted') do
+      result = client.tables_formatted
 
-    assert_includes result, 'test'
+      assert_includes result, 'test'
+    end
   end
 
   def test_for_table_data
-    result = @bq.table_data('test')
+    VCR.use_cassette('bq_test_for_table_data') do
+      result = client.table_data('test')
 
-    assert_kind_of Array, result
+      assert_kind_of Array, result
+    end
   end
 
   def test_for_create_table
-    if @bq.tables_formatted.include? 'test123'
-      @bq.delete_table('test123')
-    end
-    result = @bq.create_table('test123', id: { type: 'INTEGER' })
+    VCR.use_cassette('bq_test_for_create_table') do
+      if client.tables_formatted.include? 'test123'
+        client.delete_table('test123')
+      end
+      result = client.create_table('test123', id: { type: 'INTEGER' })
 
-    assert_equal result['kind'], "bigquery#table"
-    assert_equal result['tableReference']['tableId'], "test123"
-    assert_equal result['schema']['fields'], [{"name"=>"id", "type"=>"INTEGER"}]
+      assert_equal result['kind'], "bigquery#table"
+      assert_equal result['tableReference']['tableId'], "test123"
+      assert_equal result['schema']['fields'], [{"name"=>"id", "type"=>"INTEGER"}]
+    end
   end
 
   def test_for_delete_table
-    if !@bq.tables_formatted.include? 'test123'
-      @bq.create_table('test123', id: { type: 'INTEGER' })
+    VCR.use_cassette('bq_test_for_delete_table') do
+      if !client.tables_formatted.include? 'test123'
+        client.create_table('test123', id: { type: 'INTEGER' })
+      end
+      result = client.delete_table('test123')
+
+      tables = client.tables_formatted
+
+      refute_includes tables, 'test123'
     end
-    result = @bq.delete_table('test123')
-
-    tables = @bq.tables_formatted
-
-    refute_includes tables, 'test123'
   end
 
   def test_for_query
-    result = @bq.query("SELECT * FROM [#{config['dataset']}.test] LIMIT 1")
+    VCR.use_cassette('bq_test_for_query') do
+      result = client.query("SELECT * FROM [#{config['dataset']}.test] LIMIT 1")
 
-    assert_equal result['kind'], "bigquery#queryResponse"
-    assert_equal result['jobComplete'], true
+      assert_equal result['kind'], "bigquery#queryResponse"
+      assert_equal result['jobComplete'], true
+    end
   end
 
   def test_for_insert
-    result = @bq.insert('test' ,"id" => 123, "type" => "Task")
+    VCR.use_cassette('bq_test_for_insert') do
+      result = client.insert('test' ,"id" => 123, "type" => "Task")
 
-    assert_equal result['kind'], "bigquery#tableDataInsertAllResponse"
+      assert_equal result['kind'], "bigquery#tableDataInsertAllResponse"
+    end
   end
 end
